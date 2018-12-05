@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RPS</title>
+  </head>
+  <body>
+    <script>
+    // Your Javascript goes here!
+    var rpsList = ['Rock', 'Paper', 'Scissors'];
+    var rpsLength = rpsList.length;
+    computerSelection = computerPlay();
+    playerSelection = 'Rock';
+    var Draw;
+
+    function computerPlay () {
+      math.floor((math.random() 1) + (rpsLength + 1));
+        if (computerSelection == '1') {
+          return 'Rock';
+        } else if (computerSelection == '2') {
+          return 'Paper';
+        } else if (computerSelection == '3') {
+          return 'Scissors';
+        }
+    }
+
+    function playRound(playerSelection, computerSelection) {
+      if (playerSelection == computerSelection) {
+        return Draw;
+      } else if (computerSelection == 'Rock') {
+        return playerSelection == 'Scissors';
+      } else if (computerSelection == 'Scissors') {
+        return playerSelection == 'Paper';
+      } else if (computerSelection == 'Paper') {
+        return playerSelection == 'Rock';
+      } else {
+        console.log('Invalid option!');
+      }
+    }
+
+    
+    </script>
+  </body>
+</html>
