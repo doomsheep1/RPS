@@ -1,2 +1,2 @@
 # RPS
-rock paper scissors
+rock paper scissors on console

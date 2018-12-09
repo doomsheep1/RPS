@@ -2,42 +2,80 @@
 <html>
   <head>
     <title>RPS</title>
+    <meta charset="utf-8"/>
   </head>
   <body>
     <script>
-    // Your Javascript goes here!
-    var rpsList = ['Rock', 'Paper', 'Scissors'];
-    var rpsLength = rpsList.length;
-    computerSelection = computerPlay();
-    playerSelection = 'Rock';
-    var Draw;
-
-    function computerPlay () {
-      math.floor((math.random() 1) + (rpsLength + 1));
-        if (computerSelection == '1') {
-          return 'Rock';
-        } else if (computerSelection == '2') {
-          return 'Paper';
-        } else if (computerSelection == '3') {
-          return 'Scissors';
-        }
+    function computerPlay() {
+      var rpsList = ['rock', 'paper', 'scissors'];
+      return rpsList[Math.floor(Math.random() * rpsList.length)];
     }
 
     function playRound(playerSelection, computerSelection) {
-      if (playerSelection == computerSelection) {
-        return Draw;
-      } else if (computerSelection == 'Rock') {
-        return playerSelection == 'Scissors';
-      } else if (computerSelection == 'Scissors') {
-        return playerSelection == 'Paper';
-      } else if (computerSelection == 'Paper') {
-        return playerSelection == 'Rock';
-      } else {
-        console.log('Invalid option!');
+      switch (computerSelection) {
+        case 'rock':
+        if (playerSelection == computerSelection) {
+          return 'Draw';
+        } else if (playerSelection == 'paper') {
+          return 'Player Wins! Paper covers Rock.';
+        } else if (playerSelection == 'scissors') {
+          return 'Player Lost! Rock smashes Scissors.';
+        } else {
+          return 'Invalid option.';
+        }
+        break;
+        case 'paper':
+        if (playerSelection == computerSelection) {
+          return 'Draw';
+        } else if (playerSelection == 'scissors') {
+          return 'Player Wins! Scissors cuts Paper.';
+        } else if (playerSelection == 'rock') {
+          return 'Player Lost! Paper covers Rock.';
+        } else {
+          return 'Invalid option';
+        }
+        break;
+        case 'scissors':
+        if (playerSelection == computerSelection) {
+          return 'Draw';
+        } else if (playerSelection == 'rock') {
+          return 'Player Wins! Rock smashes Scissors.';
+        } else if (playerSelection == 'paper') {
+          return 'Player Lost! Scissors cuts Paper.';
+        } else {
+          return 'Invalid option';
+        }
+        break;
       }
     }
 
-    
+    function game() {
+      var playerScore = 0;
+      var computerScore = 0;
+      var overallWinner = '';
+      console.log('\n***** Rock, Paper, Scissors, 5 rounds! *****\n');
+      for (var roundCount = 1; roundCount <= 5; roundCount +=1) {
+        var playerSelection = prompt('Rock, Paper, or Scissors? Choose!', ).toLowerCase();
+        var computerSelection = computerPlay();
+        var compare = playRound(playerSelection, computerSelection);
+        console.log('Round ' + roundCount + ': ' + compare);
+        if (compare.includes('Player Wins!')) {
+          playerScore +=1;
+        } else if (compare.includes('Player Lost!')) {
+          computerScore +=1;
+        }
+      }
+      if (playerScore > computerScore) {
+        overallWinner = 'Player defeated Computer!';
+      } else if (computerScore > playerScore) {
+        overallWinner = 'Computer defeated Player!';
+      } else {
+        overallWinner = 'None of you lost!';
+      }
+      console.log('Player Score:' + playerScore +'\nComputer Score:' + computerScore + '\n' + overallWinner);
+    }
+
+    game();
     </script>
   </body>
 </html>
